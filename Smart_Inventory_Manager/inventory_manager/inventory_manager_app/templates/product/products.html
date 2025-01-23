@@ -1,0 +1,21 @@
+<div class="products-container">
+    <h2>Our Products</h2>
+    <a href="{% url 'inventory_manager_app:product-create' %}" class="btn">Create New</a>
+
+    <div class="products-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <h3 class="product-name">{{ product.product_name }}</h3>
+            <p class="product-description">{{ product.description }}</p>
+            <p class="product-price">${{ product.price }}</p>
+
+            <button data-product={{product.product_id}} data-action="add" class = "btn btn-outline-secondary add-btn update-cart">
+                Add to Cart
+            </button>
+<!--            <a href="" class="btn">Add to Cart</a>-->
+            <a href="{% url 'inventory_manager_app:product-update' product_slug=product.slug %}" class="btn">Update</a>
+            <a href="{% url 'inventory_manager_app:product-delete' product_slug=product.slug %}" class="btn">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>

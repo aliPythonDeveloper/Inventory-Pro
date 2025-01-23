@@ -1,0 +1,58 @@
+{% extends "layouts/index.html" %}
+{% load static %}
+{% block content %}
+<main>
+    <section class="container stylization maincont">
+          {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert-success alert-{{ message.tags }}">
+              {{ message|safe }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+        <ul class="b-crumbs">
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+            <li>
+                <span>Registration / Login</span>
+            </li>
+        </ul>
+        <h1 class="main-ttl"><span>Registration / Login</span></h1>
+
+        <div class="auth-wrap">
+
+                <h2>Login</h2>
+                <form method="POST" class="register">
+                       {% csrf_token %}
+                    <p>
+                        <label for="reg_email">Username <span class="">*</span></label><input type="text" name = "username" id="reg_email">
+                    </p>
+                    <p>
+                        <label for="reg_password">Password <span class="">*</span></label><input type="password" name="password" id="reg_password">
+                    </p>
+                    <p class="auth-submit">
+                        <input type="submit" value="Login">
+
+                    </p>
+                </form>
+             <p class="auth-lost_password">
+                        <a href="#">Lost your password?</a>
+             </p>
+              <p class="auth-submit">
+         <a href="{% url 'inventory_manager_app:login-type'%}"><input type="submit" value="CREATE NEW ACCOUNT"></a>
+         </p>
+
+
+        </div>
+
+
+
+    </section>
+</main>
+{% endblock %}

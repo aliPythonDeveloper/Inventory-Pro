@@ -1,0 +1,30 @@
+{% extends "layouts/index.html" %}
+{% block content %}
+<div class="container">
+        <h1>Order Summary</h1>
+        <div class="order-summary">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in orders.items.all %}
+                    <tr>
+                        <td>{{ item.product.product_name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.total_price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="total">
+                <p><strong>Total Amount:</strong> ${{ orders.total_price }}</p>
+            </div>
+            <a href="" class="btn">Proceed to Shipment</a>
+        </div>
+    </div>
+{% endblock %}

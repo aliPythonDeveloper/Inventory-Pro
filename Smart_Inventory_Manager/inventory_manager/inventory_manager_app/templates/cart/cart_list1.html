@@ -1,0 +1,89 @@
+{% extends "layouts/index.html" %}
+{% load static %}
+{% block content %}
+
+    <section class="container stylization maincont">
+
+
+        <ul class="b-crumbs">
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+            <li>
+                <span>Cart</span>
+            </li>
+        </ul>
+        <h1 class="main-ttl"><span>Cart</span></h1>
+        <!-- Cart Items - start -->
+        <form action="#">
+
+            <div class="cart-items-wrap">
+                <table class="cart-items">
+                    <thead>
+                    <tr>
+                        <td class="cart-image">Photo</td>
+                        <td class="cart-ttl">Products</td>
+                        <td class="cart-price">Price</td>
+                        <td class="cart-quantity">Quantity</td>
+                        <td class="cart-summ">Summ</td>
+                        <td class="cart-del">&nbsp;</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      {% for cartItem in cartItems %}
+                    <tr>
+                        <td class="cart-image">
+                              {% with cartItem.product.products_image.first as first_image %}
+					  {% if first_image %}
+                            <a href="product.html">
+                                <img src="{{ first_image.category_image.url }}" alt="Similique delectus totam">
+                            </a>
+                 {% endif %}
+                {% endwith %}
+                        </td>
+                        <td class="cart-ttl">
+                            <a href="product.html">{{cartItem.product.product_name}}</a>
+                            <p>Color: Red</p>
+                            <p>Size: XS</p>
+                        </td>
+                        <td class="cart-price">
+                            <b>${{cartItem.product.price}}</b>
+                        </td>
+                        <td class="cart-quantity">
+                            <p class="cart-qnt">
+                                <input value="{{ cartItem.quantity }}" type="text">
+                                <a data-product={{cartItem.product.product_id}} data-action ="add"  href="#" class="cart-plus update-cart"><i class="fa fa-angle-up"></i></a>
+                                <a data-product={{cartItem.product.product_id}} data-action ="remove"  href="#" class="cart-minus update-cart"><i class="fa fa-angle-down"></i></a>
+                            </p>
+                        </td>
+                        <td class="cart-summ">
+                            <b>${{cartItem.total_price}}</b>
+                            <p class="cart-forone">unit price <b>${{cartItem.total_price}}</b></p>
+                        </td>
+                        <td class="cart-del">
+                            <a href="#" class="cart-remove"></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+            <ul class="cart-total">
+                <li class="cart-summ">TOTAL: <b>${{ cart.total_price }}</b></li>
+            </ul>
+            <div class="cart-submit">
+                <div class="cart-coupon">
+                    <input placeholder="your coupon" type="text">
+                    <a class="cart-coupon-btn" href="#"><img src="img/ok.png" alt="your coupon"></a>
+                </div>
+                <a href="{% url 'inventory_manager_app:order-summary' %}" class="cart-submit-btn">Checkout</a>
+                <a href="#" class="cart-clear">Clear cart</a>
+            </div>
+        </form>
+        <!-- Cart Items - end -->
+
+    </section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="home-container">
+        <!-- Display success or error messages -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert-success alert-{{ message.tags }}">
+              {{ message|safe }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <h1>Welcome to Smart Inventory Manager</h1>
+    <p>Track, manage, and optimize your inventory seamlessly.</p>
+      <a href="{% url 'inventory_manager_app:supplier-register' %}">Click here to become as a supplier</a>
+        <br>
+        <a href="{% url 'inventory_manager_app:wholesaler-register' %}">Click here to become as wholesaler</a>
+</div>
+{% endblock %}

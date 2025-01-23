@@ -1,0 +1,45 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Registration for a Supplier</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Render product name field -->
+        <label for="id_product_name">Username</label>
+        {{ form.username }}
+
+        <!-- Render category field -->
+        <label for="id_category">Email</label>
+        {{ form.email }}
+
+        <!-- Render description field -->
+        <label for="id_description">Password</label>
+        {{ form.password1 }}
+
+        <!-- Render price field -->
+        <label for="id_price">Confirm Password</label>
+        {{ form.password2 }}
+
+        <!-- Render stock quantity field -->
+        <label for="id_stock_quantity">Company Name</label>
+        {{ form.company_name }}
+
+        <label for="id_stock_quantity">Contact Number</label>
+        {{ form.contact_number }}
+
+
+        <!-- Render reorder level field -->
+        <label for="id_reorder_level">Address</label>
+        {{ form.address }}
+
+        <button type="submit">Register</button>
+        {{form.errors}}
+    </form>
+
+</div>
+
+
+{% endblock %}

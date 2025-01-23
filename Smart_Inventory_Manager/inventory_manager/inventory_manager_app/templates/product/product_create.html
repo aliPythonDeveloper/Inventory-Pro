@@ -1,0 +1,52 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Create Product</h2>
+
+    <form method="POST"  enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Render product name field -->
+        <label for="id_product_name">Product Name</label>
+        {{ form.product_name }}
+
+        <!-- Render category field -->
+        <label for="id_category">Category</label>
+        {{ form.category }}
+
+        <!-- Render description field -->
+        <label for="id_description">Description</label>
+        {{ form.description }}
+
+        <!-- Render price field -->
+        <label for="id_price">Price</label>
+        {{ form.price }}
+
+        <!-- Render stock quantity field -->
+        <label for="id_stock_quantity">Stock Quantity</label>
+        {{ form.stock_quantity }}
+
+        <!-- Render reorder level field -->
+        <label for="id_reorder_level">Reorder Level</label>
+        {{ form.reorder_level }}
+
+        <!-- Render suppliers field -->
+        <label for="id_suppliers">Suppliers</label>
+        {{ form.suppliers }}
+
+        <h2>Upload Product Image</h2>
+        {{ image_form.category_image }}
+
+        <!-- Render image upload formset -->
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <div class="form-footer">
+        <p><a href="{% url 'inventory_manager_app:list' %}">Back to Product List</a></p>
+    </div>
+</div>
+
+
+{% endblock %}

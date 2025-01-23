@@ -1,0 +1,32 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+  <div class="cart-container">
+        <h1>Shopping Cart</h1>
+        {% for cartItem in cartItems %}
+        <div class="cart-items">
+            <div class="cart-item">
+                <img src="https://via.placeholder.com/100" alt="Product Image">
+                <div class="item-details">
+                    <h2>{{cartItem.product.product_name}}</h2>
+                    <p>${{cartItem.product.price}}</p>
+                </div>
+                <div class="item-quantity">
+                    <button data-product={{cartItem.product.product_id}} data-action ="remove" class="quantity-btn update-cart">-</button>
+                    <input type="number" value="{{ cartItem.quantity }}" min="1" name="quantity">
+                    <button data-product={{cartItem.product.product_id}} data-action ="add" class="quantity-btn update-cart">+</button>
+                </div>
+                <div class="item-total">
+                    <p>${{cartItem.total_price}}</p>
+                </div>
+                <button class="remove-item">Remove</button>
+            </div>
+        </div>
+            {% endfor %}
+        <div class="cart-summary">
+            <h3>Cart Summary</h3>
+            <p>Total: $50.00</p>
+    <a class="checkout-btn" href="{% url 'inventory_manager_app:order-summary' %}">Proceed to Checkout</a>
+
+        </div>
+    </div>
+{% endblock %}

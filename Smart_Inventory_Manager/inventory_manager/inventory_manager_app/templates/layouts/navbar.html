@@ -1,0 +1,18 @@
+
+<nav class="navbar">
+    <div class="logo">
+        <a href="{% url 'inventory_manager_app:home' %}">Smart Inventory</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="{% url 'inventory_manager_app:home' %}">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="{% url 'inventory_manager_app:logout' %}">Logout</a></li>
+        <li>
+            <a href=""class="cart-btn">
+                <i class="fas fa-shopping-cart"></i>  <!-- Font Awesome Cart Icon -->
+                <span class="cart-count"><a href="{% url 'inventory_manager_app:cart-items' %}" >Cart</a></span>  <!-- Cart item count -->
+            </a>
+        </li>
+    </ul>
+</nav>

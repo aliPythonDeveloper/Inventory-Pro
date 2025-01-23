@@ -1,0 +1,50 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Registration for a Wholesaler</h2>
+
+    <!-- Display success or error messages -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+              {{ message|safe }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Display general form errors -->
+        {% if form.non_field_errors %}
+            <div class="form-errors">
+                <ul>
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- Render each field with error handling -->
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="field-errors">
+                        {{ field.errors|join:", " }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <div class="form-group">
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

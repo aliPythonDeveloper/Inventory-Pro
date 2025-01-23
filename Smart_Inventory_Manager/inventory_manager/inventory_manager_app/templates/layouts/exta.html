@@ -1,0 +1,7 @@
+   {% if cartItem.product.products_image.all %}
+                {% with image=cartItem.product.products_image.all|first %}
+                <img src="{{ /media/{{image.category_image.url}}" alt="{{ cartItem.product.product_name }} image" />
+                 {% endwith %}
+                {% else %}
+                <p>No image available</p>
+                {% endif %}

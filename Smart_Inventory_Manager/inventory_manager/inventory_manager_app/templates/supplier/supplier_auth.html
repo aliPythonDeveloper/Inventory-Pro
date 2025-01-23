@@ -1,0 +1,100 @@
+{% extends "layouts/index.html" %}
+{% load static %}
+{% block content %}
+<main>
+    <section class="container stylization maincont">
+
+
+        <ul class="b-crumbs">
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+            <li>
+                <span>Registration / Login</span>
+            </li>
+        </ul>
+        <h1 class="main-ttl"><span>Registration / Login</span></h1>
+
+        <div class="auth-wrap">
+<!--            <div class="auth-col">-->
+                <h2>Register for a supplier</h2>
+                            {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                          {{ message|safe }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+          <!-- Display general form errors -->
+                {% if form.non_field_errors %}
+                    <div class="form-errors">
+                        <ul>
+                            {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <form method="POST" class="login">
+                    {% csrf_token %}
+                   <p>
+                        <label for="username">Username <span class="required"></span></label>
+                      {{ form.username }}
+                    </p>
+
+                    <p>
+                        <label for="username">E-mail <span class="required"></span></label>
+                      {{ form.email }}
+                    </p>
+
+                    <p>
+                        <label for="password">Password <span class="required">*</span></label>
+                         {{ form.password1 }}
+                    </p>
+                  <p>
+                        <label for="password">Password <span class="required">*</span></label>
+                         {{ form.password2 }}
+                    </p>
+                  <p>
+                        <label for="password">Company Name <span class="required">*</span></label>
+                         {{ form.company_name }}
+                    </p>
+                  <p>
+                        <label for="password">Contact Number <span class="required">*</span></label>
+                        {{ form.contact_number }}
+                    </p>
+                  <p>
+                        <label for="password">Address <span class="required">*</span></label>
+                           {{ form.address }}
+                    </p>
+                    <p class="auth-submit">
+                        <input type="submit" value="Register">
+                        <input type="checkbox" id="rememberme" value="forever">
+                        <label for="rememberme">Remember me</label>
+                    </p>
+                   {{form.errors}}
+                    <p class="auth-lost_password">
+                        <a href="#">Login</a>
+                    </p>
+                </form>
+               <h6>Already exist Account?</h6>
+              <p class="auth-submit">
+         <a href="{% url 'inventory_manager_app:login'%}"><input type="submit" value="Login"></a>
+         </p>
+<!--            </div>-->
+
+
+
+        </div>
+
+
+
+    </section>
+</main>
+{% endblock %}

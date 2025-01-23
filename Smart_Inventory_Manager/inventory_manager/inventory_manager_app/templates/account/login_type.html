@@ -1,0 +1,66 @@
+{% extends "layouts/index.html" %}
+{% load static %}
+{% block content %}
+<main>
+    <section class="container stylization maincont">
+
+
+        <ul class="b-crumbs">
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+            <li>
+                <span>Registration / Login</span>
+            </li>
+        </ul>
+        <h1 class="main-ttl"><span>Registration / Login</span></h1>
+<!--        <div class="auth-wrap">-->
+
+<!--            <div class="auth-col">-->
+<!--           <h3>Welcome! Are you signing up as a Wholesaler or Supplier?</h3>-->
+<!--          <h5>Please select your account type to get started.</h5>-->
+<!--    <p class="auth-submit">-->
+<!--         <a href="{% url 'inventory_manager_app:wholesaler-register'%}"><input type="submit" value="Wholesaler"></a>-->
+<!--         </p>-->
+<!--           <p class="auth-submit">-->
+<!--         <a href="{% url 'inventory_manager_app:supplier-register'%}" ><input type="submit" value="Supplier"></a>-->
+<!--         </p>-->
+
+<!--            </div>-->
+<!--                <div class="auth-col">-->
+
+<!--                <img src = "{% static 'img/login_page_image.jpg' %}">-->
+<!--            </div>-->
+
+
+<!--        </div>-->
+                    <div class="fr-slider-wrap">
+            <div class="fr-slider">
+                <ul class="slides">
+                    <li>
+                        <img src="{% static 'img/login_page_image.png' %}" alt="">
+                        <div class="fr-slider-cont">
+                             <h3>Welcome! Are you signing up as a Wholesaler or Supplier?</h3>
+                              <h5>Please select your account type to get started.</h5>
+                               <p class="fr-slider-more-wrap">
+                                <a class="fr-slider-more" href="{% url 'inventory_manager_app:supplier-register'%}">Supplier</a>
+                                    <a class="fr-slider-more" href="{% url 'inventory_manager_app:wholesaler-register'%}">Wholesaler</a>
+                            </p>
+
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+    </section>
+</main>
+
+{% endblock %}
