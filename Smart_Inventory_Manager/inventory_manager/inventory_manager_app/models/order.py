@@ -20,7 +20,6 @@ class Order(CreateUpdateMixIn):
     cart = models.ForeignKey(Cart, related_name='cart', on_delete=models.CASCADE)
     order_date = models.DateTimeField(auto_now_add=True)
     transaction_id = models.CharField(max_length=20, null=True, blank=True)
-    quantity = models.IntegerField(default=0)
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     status = models.CharField(max_length=20, choices=ORDER_STATUS_CHOICES, default="Pending")
 
@@ -29,7 +28,7 @@ class Order(CreateUpdateMixIn):
 
     @property
     def calculate_total(self):
-        total = sum(item.total_price() for item in self.cart.items.all())
+        total = sum(item.total_price for item in self.cart.items.all())
         return total
     @property
     def get_cart_items(self):

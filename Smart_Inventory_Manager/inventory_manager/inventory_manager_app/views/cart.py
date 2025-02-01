@@ -51,23 +51,6 @@ def cartPage(request):
     context = {"cartItems": cartItems, "cart": cart}
     return render(request, 'cart/cart_list1.html', context)
 
-# def cartPage(request):
-#     print('inside cart page')
-#     if request.user.is_authenticated:
-#         wholesaler = request.user.wholesaler
-#         cart, created = Cart.objects.get_or_create(user=request.user)
-#         order, created = Order.objects.get_or_create(cart=cart, wholesaler=wholesaler)
-#         items = order.items.all()
-#         print('Items', items)
-#         cartItems = order.get_cart_items
-#         print('cartItems',cartItems)
-#     else:
-#         items = []
-#         order = {'calculate_total':0, 'get_cart_items': 0}
-#         cartItems = order['get_cart_items']
-#
-#     context = {'items': items, 'orders': order, "cartItems": cartItems}
-#     return render(request, 'cart/cart_list.html', context)
 
 
 

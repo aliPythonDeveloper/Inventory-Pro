@@ -9,10 +9,21 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 
 
+
 def OrderSummary(request):
     if request.user.is_authenticated:
-        wholesaler = request.user.wholesaler
-        print("Wholesaler:",wholesaler)
+        try:
+            wholesaler = request.user.wholesaler
+        except AttributeError:
+            wholesaler = None
+
+        if not wholesaler:
+            # Handle the case where the user does not have a wholesaler
+            context = {
+                'message': 'You do not have a wholesaler, so there is no order for you.'
+            }
+            return render(request, 'order/order_summary.html', context)
+
         cart = Cart.objects.get(user=request.user)
         cart_items = cart.items.all()
 
@@ -43,6 +54,7 @@ def OrderSummary(request):
             'orders': order
         }
         return render(request, 'order/order_summary.html', context)
+
 
 
 def processOrder(request):

@@ -8,7 +8,7 @@ class Category(CreateUpdateMixIn):
     slug = models.SlugField(unique=True, blank=True, null=True)
     parent = models.ForeignKey(
         'self',
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True,
         related_name='subcategories'
